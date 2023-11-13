@@ -13,11 +13,11 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http
-      .get<any[]>('http://localhost:3000/barChartData')
-      .subscribe((data) => {
-        this.barData = data;
-      });
+    // this.http
+    //   .get<any[]>('http://localhost:3000/barChartData')
+    //   .subscribe((data) => {
+    //     this.barData = data;
+    //   });
   }
 
   barChartData = [

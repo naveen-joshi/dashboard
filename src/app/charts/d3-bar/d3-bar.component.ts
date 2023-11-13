@@ -1,5 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  AfterViewInit,
+} from '@angular/core';
 import * as d3 from 'd3';
 
 @Component({
@@ -7,8 +13,15 @@ import * as d3 from 'd3';
   templateUrl: './d3-bar.component.html',
   styleUrls: ['./d3-bar.component.scss'],
 })
-export class D3BarComponent implements OnInit, OnChanges {
+export class D3BarComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() graphData: any[] = [];
+  chartData = [
+    { Framework: 'Vue', Stars: '166443', Released: '2014' },
+    { Framework: 'React', Stars: '150793', Released: '2013' },
+    { Framework: 'Angular', Stars: '62342', Released: '2016' },
+    { Framework: 'Backbone', Stars: '27647', Released: '2010' },
+    { Framework: 'Ember', Stars: '21471', Released: '2011' },
+  ];
   private svg: any;
   private margin = 50;
   private width = 750 - this.margin * 2;
@@ -70,5 +83,10 @@ export class D3BarComponent implements OnInit, OnChanges {
     if (this.graphData) {
       this.drawBars(this.graphData);
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.createSvg();
+    this.drawBars(this.chartData);
   }
 }
