@@ -1,0 +1,29 @@
+<div>
+    <label for="rows">Number of Rows:</label>
+    <input type="number" [(ngModel)]="rows" name="rows" />
+  </div>
+
+  <div>
+    <label for="columns">Number of Columns:</label>
+    <input type="number" [(ngModel)]="columns" name="columns" />
+  </div>
+
+  <button (click)="generateTable()">Generate Table</button>
+  <button (click)="addRow()">Add Row</button>
+  <button (click)="addColumn()">Add Column</button>
+
+  <br>
+  <br>
+  <br>
+  <table *ngIf="rows && columns">
+    <tr *ngFor="let row of tableData; let i = index">
+      <td *ngFor="let cell of row; let j = index" (click)="onCellDoubleClick(i, j)">
+        <ng-container *ngIf="!editableStates[i][j]; else editableCell">
+          {{ cell }}
+        </ng-container>
+        <ng-template #editableCell>
+          <input [(ngModel)]="tableData[i][j]" />
+        </ng-template>
+      </td>
+    </tr>
+  </table>

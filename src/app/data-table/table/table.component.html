@@ -1,0 +1,34 @@
+<!-- <p-table [columns]="cols" [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let col of columns">
+              {{ col.header }}
+          </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+          <td *ngFor="let col of columns">
+              {{ rowData[col.field] }}
+          </td>
+      </tr>
+  </ng-template>
+</p-table> -->
+
+<input type="text" name="coulmnName" [(ngModel)]="columnName">
+<button (click)="addColumn()">Add New Column</button>
+<br>
+<br>
+<button (click)="addNewRow()">Add New Row</button>
+<button (click)="save()">Save Changes</button>
+<br>
+<br>
+<button (click)="saveAsExcel()">Save as Excel</button>
+<button (click)="saveAsCSV()">Save as CSV</button>
+<br>
+
+<gui-grid
+          [source]="source"
+				  [columns]="columns"
+          [cellEditing]="true">
+		</gui-grid>
